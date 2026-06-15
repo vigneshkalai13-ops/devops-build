@@ -1,0 +1,157 @@
+Started by user Vignesh
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/devops-build
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Clone)
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/devops-build/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/vigneshkalai13-ops/devops-build.git # timeout=10
+Fetching upstream changes from https://github.com/vigneshkalai13-ops/devops-build.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.53.0'
+ > git fetch --tags --force --progress -- https://github.com/vigneshkalai13-ops/devops-build.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/dev^{commit} # timeout=10
+Checking out Revision a22555e0de4963f4ec23952d391164e906b53670 (refs/remotes/origin/dev)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f a22555e0de4963f4ec23952d391164e906b53670 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D dev # timeout=10
+ > git checkout -b dev a22555e0de4963f4ec23952d391164e906b53670 # timeout=10
+Commit message: "fix build file"
+ > git rev-list --no-walk a22555e0de4963f4ec23952d391164e906b53670 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build & Push Dev)
+[Pipeline] sh
++ bash build.sh
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  3.622MB
+Step 1/5 : FROM nginx:1.25-alpine
+ ---> 516475cc129d
+Step 2/5 : RUN rm -rf /usr/share/nginx/html/*
+ ---> Using cache
+ ---> 2db93150fa33
+Step 3/5 : COPY build/ /usr/share/nginx/html/
+ ---> 1b2391e2a82d
+Step 4/5 : EXPOSE 80
+ ---> Running in 6ad0b95afe0d
+ ---> Removed intermediate container 6ad0b95afe0d
+ ---> 1102580b69e3
+Step 5/5 : CMD ["nginx", "-g", "daemon off;"]
+ ---> Running in aa8def817ca7
+ ---> Removed intermediate container aa8def817ca7
+ ---> d64fefb9bf15
+Successfully built d64fefb9bf15
+Successfully tagged renesharya1122/dev-repo:latest
+The push refers to repository [docker.io/renesharya1122/dev-repo]
+4abcf2066143: Waiting
+fc21a1d387f5: Waiting
+e6ef242c1570: Waiting
+8a3742a9529d: Waiting
+d4bca490e609: Waiting
+dc05e396c2d6: Waiting
+13fcfbc94648: Waiting
+1186040dc591: Waiting
+5406ed7b06d9: Waiting
+0d0c16747d2c: Waiting
+fc21a1d387f5: Waiting
+e6ef242c1570: Waiting
+8a3742a9529d: Waiting
+d4bca490e609: Waiting
+dc05e396c2d6: Waiting
+13fcfbc94648: Waiting
+1186040dc591: Waiting
+5406ed7b06d9: Waiting
+0d0c16747d2c: Waiting
+4abcf2066143: Waiting
+dc05e396c2d6: Waiting
+13fcfbc94648: Waiting
+1186040dc591: Waiting
+5406ed7b06d9: Waiting
+0d0c16747d2c: Waiting
+4abcf2066143: Waiting
+fc21a1d387f5: Waiting
+e6ef242c1570: Waiting
+8a3742a9529d: Waiting
+d4bca490e609: Waiting
+4abcf2066143: Waiting
+fc21a1d387f5: Waiting
+e6ef242c1570: Waiting
+8a3742a9529d: Waiting
+d4bca490e609: Waiting
+dc05e396c2d6: Waiting
+13fcfbc94648: Waiting
+1186040dc591: Waiting
+5406ed7b06d9: Waiting
+0d0c16747d2c: Waiting
+4abcf2066143: Waiting
+fc21a1d387f5: Waiting
+e6ef242c1570: Waiting
+8a3742a9529d: Waiting
+d4bca490e609: Waiting
+dc05e396c2d6: Waiting
+13fcfbc94648: Waiting
+1186040dc591: Waiting
+5406ed7b06d9: Waiting
+0d0c16747d2c: Waiting
+8a3742a9529d: Waiting
+d4bca490e609: Waiting
+dc05e396c2d6: Waiting
+13fcfbc94648: Waiting
+1186040dc591: Waiting
+5406ed7b06d9: Waiting
+0d0c16747d2c: Waiting
+4abcf2066143: Waiting
+fc21a1d387f5: Waiting
+e6ef242c1570: Waiting
+4abcf2066143: Waiting
+fc21a1d387f5: Layer already exists
+e6ef242c1570: Waiting
+8a3742a9529d: Waiting
+d4bca490e609: Layer already exists
+dc05e396c2d6: Waiting
+13fcfbc94648: Waiting
+1186040dc591: Waiting
+5406ed7b06d9: Waiting
+0d0c16747d2c: Waiting
+4abcf2066143: Layer already exists
+e6ef242c1570: Waiting
+8a3742a9529d: Waiting
+dc05e396c2d6: Waiting
+13fcfbc94648: Waiting
+1186040dc591: Waiting
+5406ed7b06d9: Waiting
+0d0c16747d2c: Waiting
+5406ed7b06d9: Layer already exists
+0d0c16747d2c: Layer already exists
+e6ef242c1570: Layer already exists
+8a3742a9529d: Layer already exists
+dc05e396c2d6: Waiting
+13fcfbc94648: Layer already exists
+1186040dc591: Waiting
+dc05e396c2d6: Waiting
+dc05e396c2d6: Waiting
+dc05e396c2d6: Mounted from renesharya1122/trend-app
+1186040dc591: Pushed
+latest: digest: sha256:d64fefb9bf158b6968347f1d0634bca6864093f02c5e9d45f611e1f997b434de size: 2478
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push to Prod)
+Stage "Push to Prod" skipped due to when conditional
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

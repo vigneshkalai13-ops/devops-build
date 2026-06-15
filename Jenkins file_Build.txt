@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone') {
+            steps {
+                git branch: 'dev', url: 'https://github.com/vigneshkalai13-ops/devops-build.git'
+            }
+        }
+
+        stage('Build & Push Dev') {
+            steps {
+                sh 'bash build.sh'
+            }
+        }
+
+        stage('Push to Prod') {
+            when {
+                branch 'master'
+            }
+            steps {
+                sh '''
+                docker tag renesharya1122/dev-repo:latest renesharya1122/prod-repo:latest
+                docker push renesharya1122/prod-repo:latest
+                '''
+            }
+        }
+    }
+}
